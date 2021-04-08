@@ -1,0 +1,67 @@
+---
+title: "resultats"
+author: "Ivan Aguilar Nieto"
+date: "4/8/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introducción
+
+Para la realización de esta práctica hemos utilizado diferentes librerías para poder analizar una web que insertaba los datos mediante JavaScript, justo después de que la página haya sido ya cargada.
+
+Estas librerías han sido:
+* selenium: Encargada de lanzar un explorador web que cargara la url de la página solicitada.
+* csv: Nos permite crear y leer archivos CSV.
+* bs4: Permite hacer el código HTML más fácil de leer y tratar
+
+## Contexto
+
+La página de la que queremos obtener los datos es la página oficial de los CrossFit Games, donde están las puntuaciones de todos los atletas que se han clasificado, cuenta con más de 3000 registros.
+
+## Contenido
+
+Nos encontraremos con las siguientes columnas:
+
+* **Ranking**: Posición en la competición
+* **Name**: Nombre del atleta
+* **Lastname**: Apellidos del atleta
+* **Country**: País por el que compite el atleta
+* **Points** Points: Puntos totales de la competición
+* **21.1**: Resultados del entrenamiento 21.1
+* **21.2**: Resultados del entrenamiento 21.2
+* **21.3**: Resultados del entrenamiento 21.3
+* **21.4**: Resultados del entrenamiento 21.4
+
+```{r}
+# install.packages("readr")
+library(readr)
+path <- "../csv/dataset.csv"
+data <- read_csv(path)
+head(data)
+```
+
+Estos datos han sido entrados por un juez certificado que ha estudiado a cada uno de los atletas y su participación.
+
+## Agradecimientos
+
+La base de datos ha podido ser generada gracias a CrossFit, No Bull, Rebook y sus colaboradores.
+
+## Inspiración
+
+Esto podría ser interesante para analizar la tendencia de los mejores atletas y obtener predicciones sobre futuras competiciones.
+Así como los patrocinadores podrían priorizar a sus atletas para ganar en su inversión.
+
+## Licencia
+
+
+
+| Contribuciones | Firma |
+| :---: | :----: |
+| Investigación previa | Ivan Aguilar y Alexander Holler |
+| Redacción de las respuestas | Ivan Aguilar y Alexander Holler |
+| Desarrollo código | Ivan Aguilar y Alexander Holler |
+
