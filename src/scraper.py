@@ -134,6 +134,11 @@ class CrossfitLeaderScraper():
                 athlete_info['affiliate_code'] = gym_code= bsAthlete.find("ul",{"class": "infobar"}).find_all("li")[6].find("a").attrs['href'].replace('/affiliate/','')
             else :
                 athlete_info['affiliate_code'] = ''
+        stats=bsAthlete.find("ul",{"class": "stats-container"})
+        if not stats is None:
+            for x in stats.find_all("tr"):
+                benchmark="bs_"+x.find("th",{"class": "stats-header"}).text.replace("\n","").replace(" ","").lower()
+                athlete_info[benchmark]=x.find("td").text.replace("\n","").replace(" ","")
         return athlete_info;
     
     def getAffiliateInfo(self,affiliate_id):
@@ -155,6 +160,6 @@ class CrossfitLeaderScraper():
         pathDirectoryAbsolute = str(pathlib.Path().absolute())
         with open(pathDirectoryAbsolute + '/csv/' + filename, 'w', newline='') as csvfile:
             csvwriter = csv.writer(csvfile, delimiter=',', )
-            csvwriter.writerow(["CompetitorId","Rank", "Name", "Lastname", "Country", "Points", "21.1", "21.2", "21.3", "21.4","Division","Age","Height","Weight","Affiliate","Affiliate_code","Affiliate_country","Localitation","Phone"])
+            csvwriter.writerow(["CompetitorId","Rank", "Name", "Lastname", "Country", "Points", "21.1", "21.2", "21.3", "21.4","Division","Age","Height","Weight","Affiliate","Affiliate_code","Back_squat","Clean_and_jeark","Snatch","Deadlift","Fight_gone_bad","Max_pull_ups","Fran","Grace","Helen","Filthy_50","Sprint_400m","Run_5k","Affiliate_country","Localitation","Phone"])
             for i in range(len(self.data)):
                 csvwriter.writerow(self.data[i])
