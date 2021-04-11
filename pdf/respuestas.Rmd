@@ -3,10 +3,12 @@ title: "Dataset: Clasificacion e información de los participantes de los opens 
 author: "Ivan Aguilar Nieto & Alexander Holler Rodriguez"
 date: "Abril de 2021"
 output:
+  html_document: 
+    number_sections: true
+    toc: true
   pdf_document: 
     number_sections: true
     toc: true
-  html_document: default
 ---
 
 ```{r setup, include=FALSE}

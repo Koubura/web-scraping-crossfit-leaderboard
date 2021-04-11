@@ -25,3 +25,9 @@ Firefox: 	https://github.com/mozilla/geckodriver/releases
 Safari: 	https://webkit.org/blog/6900/webdriver-support-in-safari-10/
 ```
 En caso de usar otro driver cambiar la linea de uso del driver en la funcion \__donwoload_html del fichero [Scraper.py](https://github.com/Koubura/web-scraping-crossfit-leaderboard/blob/main/src/scraper.py).
+
+Para ejecutar el codigo, debereis escoger el python que tengais las dependencias instaladas y ejecutar en el terminal :
+
+```
+(vuestro python) src/main.py
+```
