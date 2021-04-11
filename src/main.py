@@ -24,7 +24,9 @@ while True:
         scraper.scrape("0","1","1")
         break
     elif opcionMenu=="2":
-        for x in range(1,6):
+        print ("Inserte cuantas paginas quiere Explorar")
+        page = input("inserta un numero valor >> ")
+        for x in range(1,(int(page)+1)):
             scraper.scrapeWithJson("0",str(x),"1")
         break
     elif opcionMenu=="9":

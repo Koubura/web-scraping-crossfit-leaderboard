@@ -64,13 +64,20 @@ class CrossfitLeaderScraper():
             result_21_3 = a['scores'][2]['rank'] + ' (' + a['scores'][2]['scoreDisplay']+')'
             result_21_4 = a['scores'][3]['rank'] + ' (' + a['scores'][3]['scoreDisplay']+')'
             athlete_info=self.getAthleteInfo(competitor_id)
-            if (athlete_info['affiliate_code']!=''):
-                affiliate_info= self.getAffiliateInfo(athlete_info['affiliate_code'])   
-            self.data.append([competitor_id,rank, first_name, last_name, countrie, total_point, result_21_1, result_21_2, result_21_3, result_21_4])
-            for x in athlete_info:
-                self.data[self.numAthlete].append(athlete_info[x])
-            for x in affiliate_info:
-                self.data[self.numAthlete].append(affiliate_info[x])
+            if (athlete_info['affiliate_code']!='--'):
+                affiliate_info= self.getAffiliateInfo(athlete_info['affiliate_code'])
+                self.data.append([competitor_id,rank, first_name, last_name, countrie, total_point, result_21_1, result_21_2, result_21_3, result_21_4])
+                for x in athlete_info:
+                    self.data[self.numAthlete].append(athlete_info[x])
+                for x in affiliate_info:
+                    self.data[self.numAthlete].append(affiliate_info[x])
+            else :
+                affiliate_info=["--","--","--"]
+                self.data.append([competitor_id,rank, first_name, last_name, countrie, total_point, result_21_1, result_21_2, result_21_3, result_21_4])
+                for x in athlete_info:
+                    self.data[self.numAthlete].append(athlete_info[x])
+                for x in range(3):
+                    self.data[self.numAthlete].append(affiliate_info[x])
             self.numAthlete+=1
             time.sleep(0.5)
             #self.data.append()
@@ -105,13 +112,20 @@ class CrossfitLeaderScraper():
             result_21_3 = a.contents[5].find("span", {"class": "rank"}).text + a.contents[3].find("span", {"class": "result"}).text
             result_21_4 = a.contents[6].find("span", {"class": "rank"}).text + a.contents[3].find("span", {"class": "result"}).text
             athlete_info=self.getAthleteInfo(competitor_id)
-            if (athlete_info['affiliate_code']!=''):
-                affiliate_info= self.getAffiliateInfo(athlete_info['affiliate_code'])   
-            self.data.append([competitor_id,rank, first_name, last_name, countrie, total_point, result_21_1, result_21_2, result_21_3, result_21_4])
-            for x in athlete_info:
-                self.data[self.numAthlete].append(athlete_info[x])
-            for x in affiliate_info:
-                self.data[self.numAthlete].append(affiliate_info[x])
+            if (athlete_info['affiliate_code']!='--'):
+                affiliate_info= self.getAffiliateInfo(athlete_info['affiliate_code'])
+                self.data.append([competitor_id,rank, first_name, last_name, countrie, total_point, result_21_1, result_21_2, result_21_3, result_21_4])
+                for x in athlete_info:
+                    self.data[self.numAthlete].append(athlete_info[x])
+                for x in affiliate_info:
+                    self.data[self.numAthlete].append(affiliate_info[x])
+            else :
+                affiliate_info=["--","--","--"]
+                self.data.append([competitor_id,rank, first_name, last_name, countrie, total_point, result_21_1, result_21_2, result_21_3, result_21_4])
+                for x in athlete_info:
+                    self.data[self.numAthlete].append(athlete_info[x])
+                for x in range(3):
+                    self.data[self.numAthlete].append(affiliate_info[x])
             self.numAthlete+=1
             time.sleep(0.5)
             #self.data.append()
@@ -129,11 +143,11 @@ class CrossfitLeaderScraper():
             info_bar_list = info_bar.find_all("li")[2:]
             for x in info_bar_list:
                 field=x.find("div",{"class": "item-label"}).text.replace("\n","").replace(" ","").lower()
-                athlete_info[field]=x.find("div",{"class": "text"}).text.replace("\n","").replace(" ","")
+                athlete_info[field]=' '.join(x.find("div",{"class": "text"}).text.replace("\n","").split())
             if (athlete_info['affiliate']!='--') :
                 athlete_info['affiliate_code'] = gym_code= bsAthlete.find("ul",{"class": "infobar"}).find_all("li")[6].find("a").attrs['href'].replace('/affiliate/','')
             else :
-                athlete_info['affiliate_code'] = ''
+                athlete_info['affiliate_code'] = '--'
         stats=bsAthlete.find("ul",{"class": "stats-container"})
         if not stats is None:
             for x in stats.find_all("tr"):
