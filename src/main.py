@@ -20,14 +20,23 @@ output_file = "dataset.csv"
 scraper = CrossfitLeaderScraper()
 while True:
     opcionMenu = input("inserta un numero valor >> ")
+    
+    rx = input("quieres obtener los resultados de RX (S/n)? ")
+    scaled = "0" if rx=="n" else "1"
+    
+    sex = input("quieres obtener los datos de los hombres (H) o de las mujeres (M)? ")
+    division = "2" if sex=="M" else "1"
+    print (scaled + " 1 " + division)
+    break
+    
     if opcionMenu=="1":
-        scraper.scrape("0","1","1")
+        scraper.scrape(scaled,"1",division)
         break
     elif opcionMenu=="2":
         print ("Inserte cuantas paginas quiere Explorar")
         page = input("inserta un numero valor >> ")
         for x in range(1,(int(page)+1)):
-            scraper.scrapeWithJson("0",str(x),"1")
+            scraper.scrapeWithJson(scaled,str(x),division)
         break
     elif opcionMenu=="9":
         break

@@ -20,6 +20,7 @@ class CrossfitLeaderScraper():
         self.numAthlete = 0
         
     def __download_html(self, url):
+        print(self.path)
         browser = webdriver.Chrome(executable_path=self.path+'/Drivers/chromedriver')
         browser.get(url)
         element_present = EC.presence_of_element_located((By.CLASS_NAME, 'athletes'))
