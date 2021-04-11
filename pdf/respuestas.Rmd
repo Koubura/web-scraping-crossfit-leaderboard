@@ -1,15 +1,21 @@
 ---
-title: "resultats"
-author: "Ivan Aguilar Nieto"
-date: "4/8/2021"
-output: html_document
+title: "Dataset: Clasificacion e información de los participantes de los opens 2021 de Crossfit"
+author: "Ivan Aguilar Nieto & Alexander Holler Rodriguez"
+date: "Abril de 2021"
+output:
+  pdf_document: 
+    number_sections: true
+    toc: true
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Introducción
+\pagebreak
+
+# Introducción
 
 Para la realización de esta práctica hemos utilizado diferentes librerías para poder analizar una web que insertaba los datos mediante JavaScript, justo después de que la página haya sido ya cargada.
 
@@ -17,47 +23,81 @@ Estas librerías han sido:
 * selenium: Encargada de lanzar un explorador web que cargara la url de la página solicitada.
 * csv: Nos permite crear y leer archivos CSV.
 * bs4: Permite hacer el código HTML más fácil de leer y tratar
+* urllib: Biblioteca encargada de lanzar peticiones http y obtener los datos de la pagina (No recoge los datos generados con javascript)
+* json: Nos permite transformar los datos en un json y tratarlos.
 
-## Contexto
+# Contexto
 
 La página de la que queremos obtener los datos es la página oficial de los CrossFit Games, donde están las puntuaciones de todos los atletas que se han clasificado, cuenta con más de 3000 registros.
 
-## Contenido
+# Contenido
 
 Nos encontraremos con las siguientes columnas:
 
+* **CompetitorId**: Id del competidor
 * **Ranking**: Posición en la competición
 * **Name**: Nombre del atleta
 * **Lastname**: Apellidos del atleta
 * **Country**: País por el que compite el atleta
-* **Points** Points: Puntos totales de la competición
+* **Points**: Puntos totales de la competición
 * **21.1**: Resultados del entrenamiento 21.1
 * **21.2**: Resultados del entrenamiento 21.2
 * **21.3**: Resultados del entrenamiento 21.3
 * **21.4**: Resultados del entrenamiento 21.4
+* **Division**: Division en la que compiten
+* **Age**: Edad del atleta
+* **Height**: Altura del atleta
+* **Weight**: Peso del atleta
+* **Affiliate**: Gimnasio donde esta affiliado 
+* **Affiliate_code**: Codigo del gimnasio que esta afiliado
+* **Back_squat**: Marca personal en el ejercicio de Back Squat
+* **Clean_and_jeark**: Marca personal en el ejercicio de Clean and jeark
+* **Snatch**: Marca personal en el ejercicio Snatch
+* **Deadlift**: Marca personal en el ejercicio Deadlift
+* **Fight_gone_bad**: Marca personal en el ejercicio Fight Gone Bad
+* **Max_pull_ups**: Marca personal en el ejercicio Pull Ups
+* **Fran**: Marca Personal en el ejercicio Fran
+* **Grace**: Marca Personal en el ejercicio Helen
+* **Filthy_50**: Marca Personal en el ejercicio Filthy 50
+* **Sprint_400m**: Marca Personal en el ejercicio Sprint 400m
+* **Run_5k**: Marca Personal en el ejercicio Run 5k
+* **Affiliatte_country**: Pais de donde es el gimnasio que esta afiliado
+* **Localitation**: Localizacion del gimnasio afiliado
+* **Phone**: Telefono del gimnasio afiliado
 
-```{r}
+\pagebreak
+
+```{r , message=FALSE, warning=FALSE}
 # install.packages("readr")
 library(readr)
 path <- "../csv/dataset.csv"
 data <- read_csv(path)
 head(data)
 ```
+Estos son los datos en referencia a cada atleta, donde estan los datos de las competiciones entrados por un juez certificado que ha estudiado a cada uno de los atletas, ademas de toda la información referente con el atleta y el lugar donde esta afiliado.
 
-Estos datos han sido entrados por un juez certificado que ha estudiado a cada uno de los atletas y su participación.
+# Agradecimientos
 
-## Agradecimientos
+La base de datos ha podido ser generada gracias a CrossFit, No Bull, Rebook, sus colaboradores y los propios atletas.
 
-La base de datos ha podido ser generada gracias a CrossFit, No Bull, Rebook y sus colaboradores.
-
-## Inspiración
+# Inspiración
 
 Esto podría ser interesante para analizar la tendencia de los mejores atletas y obtener predicciones sobre futuras competiciones.
 Así como los patrocinadores podrían priorizar a sus atletas para ganar en su inversión.
 
-## Licencia
+\pagebreak
 
+# Licencia
 
+La licencia que hemos decidido usar es la [Atribución-CompartirIgual 4.0 Internacional](https://creativecommons.org/licenses/by-sa/4.0/deed.es) es una licencia que permite compartir y adaptar todo el codigo como el Dataset y permite el uso comercial, pero estara bajo los siguientes terminos:
+
+* Atribución: Deberan dar dar crédito de manera adecuada, brindar un enlace a la licencia, e indicar si se han realizado cambios. De esta manera se reconocera el trabajo del autor y el que haga uso y aporte sobre el proyecto.
+
+* Compartir igual: Deberan compartir el codigo de cualquier modificación con la misma licencia, con esto beneficiamos a la creación de un mejor proyecto y que sea de dominio publico.
+
+# Codigo
+
+El codigo para acceder a este proyecto es [Web Scraping Crossfit leaderboard](https://github.com/Koubura/web-scraping-crossfit-leaderboard)
 
 | Contribuciones | Firma |
 | :---: | :----: |
